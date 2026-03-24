@@ -1,26 +1,25 @@
 public static void main(String[] args){
 
-    System.out.println("===================================");
-    System.out.println("UC2 - Add Passenger Bogies to Train");
-    System.out.println("===================================");
+    System.out.println("====================================");
+    System.out.println("UC4 - Maintain Ordered Bogie Consist");
+    System.out.println("====================================");
 
-    List<String> passengerBogies = new ArrayList<>();
+    List<String> passengerBogies = new LinkedList<>();
 
+    passengerBogies.add("Engine");
     passengerBogies.add("Sleeper");
-    passengerBogies.add("AC Chair");
-    passengerBogies.add("First Class");
+    passengerBogies.add("AC");
+    passengerBogies.add("Cargo");
+    passengerBogies.add("Guard");
 
-    System.out.println("\n\nafter adding bogies:");
-    System.out.println(("Passenger Bogies : " + passengerBogies));
+    System.out.println("\n\nInitial Train Consist:\n" + passengerBogies);
 
-    passengerBogies.remove("\nAC Chair");
-    System.out.println("after removing AC Chair:");
-    System.out.println(("Passenger Bogies : " + passengerBogies));
+    passengerBogies.add(2,"Pantry");
+    System.out.println("\nAfter Inserting 'Pantry car' at position 2:\n" + passengerBogies);
 
-    System.out.println("\nchecking if 'Sleeper' exists:");
-    System.out.println("Contains Sleeper? : " + passengerBogies.contains("Sleeper"));
+    passengerBogies.removeFirst();
+    passengerBogies.removeLast();
+    System.out.println("\nAfter Removing First and Last Bogie:\n" + passengerBogies);
 
-    System.out.println("\nFinal Train Passesnger Consist:");
-    System.out.println( passengerBogies);
-
+    System.out.println("\nUC4 ordered consist operations completed...");
 }
