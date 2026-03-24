@@ -1,14 +1,18 @@
 public static void main(String[] args){
 
     System.out.println("==================================");
-    System.out.println("===Train Consist Management App===");
+    System.out.println("===UC3 - Track Unique Bogie IDs===");
     System.out.println("==================================");
 
-    List<String> trainConsist = new ArrayList<>();
+    Set <String> bogies = new HashSet<>();
 
-    System.out.println("\n\nTrain initialised succesfully");
-    int Bogie_Count = trainConsist.size();
-    System.out.println("Initial Bogie Count is: " + Bogie_Count);
-    System.out.println("Current Train Consist: " + trainConsist);
+    bogies.add("BG101");
+    bogies.add("BG102");
+    bogies.add("BG103");
+    bogies.add("BG104");
 
+    bogies.add("BG104");
+    bogies.add("BG102");
+
+    System.out.println("Bogie IDs after Insesrtion:\n" + bogies);
 }
