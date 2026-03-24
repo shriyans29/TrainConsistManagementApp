@@ -1,19 +1,24 @@
-public static void main(String[] args){
+import java.util.HashMap;
+import java.util.Map;
 
-    System.out.println("========================================");
-    System.out.println("UC5 - Preserve Insertion Order of Bogies");
-    System.out.println("========================================");
+public class TrainConsistManagementApp {
 
-    Set<String> formation = new LinkedHashSet<>();
+    public static void main(String[] args) {
 
-    formation.add("Engine");
-    formation.add("Sleeper");
-    formation.add("Cargo");
-    formation.add("Guard");
-    formation.add("Sleeper");
-    System.out.println("\n\nFinal train formation:\n" + formation);
+        System.out.println("=== Train Consist Management App ===");
 
-    System.out.println("\nNote:\nLinkedHashSet preserved insertion order and removes duplicates automatically.");
-    System.out.println("\nUC5 formation setup completer...");
+        Map<String, Integer> bogieCapacityMap = new HashMap<>();
 
+        bogieCapacityMap.put("Sleeper", 72);
+        bogieCapacityMap.put("AC Chair", 78);
+        bogieCapacityMap.put("First Class", 24);
+
+        System.out.println("\nBogie Capacity Details:");
+
+        for (Map.Entry<String, Integer> entry : bogieCapacityMap.entrySet()) {
+            System.out.println("Bogie: " + entry.getKey() +
+                    " | Capacity: " + entry.getValue());
+        }
+
+    }
 }
