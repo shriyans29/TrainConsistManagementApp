@@ -10,6 +10,11 @@ public static void main(String[] args){
     bogies.add("BG102");
     bogies.add("BG103");
     bogies.add("BG104");
+    bogies.add("BG104");
+    bogies.add("BG102");
+
+    System.out.println("Bogie IDs after Insesrtion:\n" + bogies);
+    
     System.out.println("===================================");
     System.out.println("UC2 - Add Passenger Bogies to Train");
     System.out.println("===================================");
