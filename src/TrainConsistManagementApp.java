@@ -1,26 +1,48 @@
-public static void main(String[] args){
+import java.util.ArrayList;
+import java.util.List;
 
-    System.out.println("===================================");
-    System.out.println("UC2 - Add Passenger Bogies to Train");
-    System.out.println("===================================");
 
-    List<String> passengerBogies = new ArrayList<>();
+class GoodsBogie {
+    String type;
+    String cargo;
 
-    passengerBogies.add("Sleeper");
-    passengerBogies.add("AC Chair");
-    passengerBogies.add("First Class");
+    GoodsBogie(String type, String cargo) {
+        this.type = type;
+        this.cargo = cargo;
+    }
 
-    System.out.println("\n\nafter adding bogies:");
-    System.out.println(("Passenger Bogies : " + passengerBogies));
+    @Override
+    public String toString() {
+        return type + " Bogie carrying " + cargo;
+    }
+}
 
-    passengerBogies.remove("\nAC Chair");
-    System.out.println("after removing AC Chair:");
-    System.out.println(("Passenger Bogies : " + passengerBogies));
+public class TrainConsistManagementApp {
 
-    System.out.println("\nchecking if 'Sleeper' exists:");
-    System.out.println("Contains Sleeper? : " + passengerBogies.contains("Sleeper"));
+    public static void main(String[] args) {
 
-    System.out.println("\nFinal Train Passesnger Consist:");
-    System.out.println( passengerBogies);
+        System.out.println("=== Train Consist Management App ===");
 
+
+        List<GoodsBogie> goodsBogies = new ArrayList<>();
+        goodsBogies.add(new GoodsBogie("Cylindrical", "Petroleum"));
+        goodsBogies.add(new GoodsBogie("Open", "Coal"));
+        goodsBogies.add(new GoodsBogie("Box", "Grain"));
+
+        boolean isSafe = goodsBogies.stream()
+                .allMatch(b ->
+                        !b.type.equalsIgnoreCase("Cylindrical") ||
+                                b.cargo.equalsIgnoreCase("Petroleum")
+                );
+
+
+        System.out.println("\nGoods Bogies:");
+        goodsBogies.forEach(System.out::println);
+
+        if (isSafe) {
+            System.out.println("\nTrain is SAFETY COMPLIANT ✅");
+        } else {
+            System.out.println("\nTrain is NOT SAFE ❌");
+        }
+    }
 }
