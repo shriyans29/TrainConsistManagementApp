@@ -1,26 +1,53 @@
-public static void main(String[] args){
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-    System.out.println("===================================");
-    System.out.println("UC2 - Add Passenger Bogies to Train");
-    System.out.println("===================================");
+public class TrainConsistManagementApp {
 
-    List<String> passengerBogies = new ArrayList<>();
+    public static void main(String[] args) {
 
-    passengerBogies.add("Sleeper");
-    passengerBogies.add("AC Chair");
-    passengerBogies.add("First Class");
+        System.out.println("=== Train Consist Management App ===");
 
-    System.out.println("\n\nafter adding bogies:");
-    System.out.println(("Passenger Bogies : " + passengerBogies));
+        Scanner sc = new Scanner(System.in);
 
-    passengerBogies.remove("\nAC Chair");
-    System.out.println("after removing AC Chair:");
-    System.out.println(("Passenger Bogies : " + passengerBogies));
+        // Input from user
+        System.out.print("\nEnter Train ID: ");
+        String trainId = sc.nextLine();
 
-    System.out.println("\nchecking if 'Sleeper' exists:");
-    System.out.println("Contains Sleeper? : " + passengerBogies.contains("Sleeper"));
+        System.out.print("Enter Cargo Code: ");
+        String cargoCode = sc.nextLine();
 
-    System.out.println("\nFinal Train Passesnger Consist:");
-    System.out.println( passengerBogies);
+        // Define Regex Patterns
+        String trainRegex = "TRN-\\d{4}";
+        String cargoRegex = "PET-[A-Z]{2}";
 
+        // Compile Patterns
+        Pattern trainPattern = Pattern.compile(trainRegex);
+        Pattern cargoPattern = Pattern.compile(cargoRegex);
+
+        // Create Matchers
+        Matcher trainMatcher = trainPattern.matcher(trainId);
+        Matcher cargoMatcher = cargoPattern.matcher(cargoCode);
+
+        // Validate using matches()
+        boolean isTrainValid = trainMatcher.matches();
+        boolean isCargoValid = cargoMatcher.matches();
+
+        // Display Results
+        System.out.println("\nValidation Results:");
+
+        if (isTrainValid) {
+            System.out.println("Train ID is VALID");
+        } else {
+            System.out.println("Train ID is INVALID");
+        }
+
+        if (isCargoValid) {
+            System.out.println("Cargo Code is VALID");
+        } else {
+            System.out.println("Cargo Code is INVALID");
+        }
+
+        sc.close();
+    }
 }
