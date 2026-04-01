@@ -1,26 +1,60 @@
-public static void main(String[] args){
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
-    System.out.println("===================================");
-    System.out.println("UC2 - Add Passenger Bogies to Train");
-    System.out.println("===================================");
+// Reuse Bogie class
+class Bogie {
+    String name;
+    int capacity;
 
-    List<String> passengerBogies = new ArrayList<>();
+    Bogie(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
+}
 
-    passengerBogies.add("Sleeper");
-    passengerBogies.add("AC Chair");
-    passengerBogies.add("First Class");
+public class TrainConsistManagementApp {
 
-    System.out.println("\n\nafter adding bogies:");
-    System.out.println(("Passenger Bogies : " + passengerBogies));
+    public static void main(String[] args) {
 
-    passengerBogies.remove("\nAC Chair");
-    System.out.println("after removing AC Chair:");
-    System.out.println(("Passenger Bogies : " + passengerBogies));
+        System.out.println("=== Train Consist Management App ===");
 
-    System.out.println("\nchecking if 'Sleeper' exists:");
-    System.out.println("Contains Sleeper? : " + passengerBogies.contains("Sleeper"));
+        // Create large dataset
+        List<Bogie> bogies = new ArrayList<>();
+        for (int i = 0; i < 100000; i++) {
+            bogies.add(new Bogie("Sleeper", 72));
+            bogies.add(new Bogie("AC Chair", 56));
+            bogies.add(new Bogie("First Class", 24));
+        }
 
-    System.out.println("\nFinal Train Passesnger Consist:");
-    System.out.println( passengerBogies);
+        // ---------------- LOOP APPROACH ----------------
+        long startLoop = System.nanoTime();
 
+        List<Bogie> loopResult = new ArrayList<>();
+        for (Bogie b : bogies) {
+            if (b.capacity > 60) {
+                loopResult.add(b);
+            }
+        }
+
+        long endLoop = System.nanoTime();
+        long loopTime = endLoop - startLoop;
+
+        // ---------------- STREAM APPROACH ----------------
+        long startStream = System.nanoTime();
+
+        List<Bogie> streamResult = bogies.stream()
+                .filter(b -> b.capacity > 60)
+                .collect(Collectors.toList());
+
+        long endStream = System.nanoTime();
+        long streamTime = endStream - startStream;
+
+        // ---------------- OUTPUT ----------------
+        System.out.println("\nLoop Result Size: " + loopResult.size());
+        System.out.println("Stream Result Size: " + streamResult.size());
+
+        System.out.println("\nLoop Execution Time (ns): " + loopTime);
+        System.out.println("Stream Execution Time (ns): " + streamTime);
+    }
 }
