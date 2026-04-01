@@ -1,6 +1,5 @@
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TrainConsistManagementApp {
 
@@ -8,46 +7,18 @@ public class TrainConsistManagementApp {
 
         System.out.println("=== Train Consist Management App ===");
 
-        Scanner sc = new Scanner(System.in);
+        Map<String, Integer> bogieCapacityMap = new HashMap<>();
 
-        // Input from user
-        System.out.print("\nEnter Train ID: ");
-        String trainId = sc.nextLine();
+        bogieCapacityMap.put("Sleeper", 72);
+        bogieCapacityMap.put("AC Chair", 78);
+        bogieCapacityMap.put("First Class", 24);
 
-        System.out.print("Enter Cargo Code: ");
-        String cargoCode = sc.nextLine();
+        System.out.println("\nBogie Capacity Details:");
 
-        // Define Regex Patterns
-        String trainRegex = "TRN-\\d{4}";
-        String cargoRegex = "PET-[A-Z]{2}";
-
-        // Compile Patterns
-        Pattern trainPattern = Pattern.compile(trainRegex);
-        Pattern cargoPattern = Pattern.compile(cargoRegex);
-
-        // Create Matchers
-        Matcher trainMatcher = trainPattern.matcher(trainId);
-        Matcher cargoMatcher = cargoPattern.matcher(cargoCode);
-
-        // Validate using matches()
-        boolean isTrainValid = trainMatcher.matches();
-        boolean isCargoValid = cargoMatcher.matches();
-
-        // Display Results
-        System.out.println("\nValidation Results:");
-
-        if (isTrainValid) {
-            System.out.println("Train ID is VALID");
-        } else {
-            System.out.println("Train ID is INVALID");
+        for (Map.Entry<String, Integer> entry : bogieCapacityMap.entrySet()) {
+            System.out.println("Bogie: " + entry.getKey() +
+                    " | Capacity: " + entry.getValue());
         }
 
-        if (isCargoValid) {
-            System.out.println("Cargo Code is VALID");
-        } else {
-            System.out.println("Cargo Code is INVALID");
-        }
-
-        sc.close();
     }
 }
