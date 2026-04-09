@@ -1,26 +1,28 @@
-public static void main(String[] args){
+import java.util.Arrays;
+import java.util.Scanner;
 
-    System.out.println("===================================");
-    System.out.println("UC2 - Add Passenger Bogies to Train");
-    System.out.println("===================================");
+public class TrainConsistManagementApp {
 
-    List<String> passengerBogies = new ArrayList<>();
+    public static void main(String[] args) {
 
-    passengerBogies.add("Sleeper");
-    passengerBogies.add("AC Chair");
-    passengerBogies.add("First Class");
+        Scanner scanner = new Scanner(System.in);
 
-    System.out.println("\n\nafter adding bogies:");
-    System.out.println(("Passenger Bogies : " + passengerBogies));
+        System.out.print("Enter number of bogies: ");
+        int n = scanner.nextInt();
+        scanner.nextLine();
 
-    passengerBogies.remove("\nAC Chair");
-    System.out.println("after removing AC Chair:");
-    System.out.println(("Passenger Bogies : " + passengerBogies));
+        String[] bogieNames = new String[n];
 
-    System.out.println("\nchecking if 'Sleeper' exists:");
-    System.out.println("Contains Sleeper? : " + passengerBogies.contains("Sleeper"));
+        System.out.println("Enter bogie type names:");
+        for (int i = 0; i < n; i++) {
+            bogieNames[i] = scanner.nextLine();
+        }
 
-    System.out.println("\nFinal Train Passesnger Consist:");
-    System.out.println( passengerBogies);
+        Arrays.sort(bogieNames);
 
+
+        System.out.println("Sorted Bogie Names: " + Arrays.toString(bogieNames));
+
+        scanner.close();
+    }
 }
