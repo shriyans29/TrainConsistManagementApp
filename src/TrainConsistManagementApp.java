@@ -1,26 +1,31 @@
-public static void main(String[] args){
+public class TrainConsistManagementApp {
+    public static void main(String[] args) {
+        System.out.println("======================================");
+        System.out.println("UC 16 manual sorting using bubble sort");
+        System.out.println("======================================");
 
-    System.out.println("===================================");
-    System.out.println("UC2 - Add Passenger Bogies to Train");
-    System.out.println("===================================");
+        int[] capacities = {72,56,24,70,60};
 
-    List<String> passengerBogies = new ArrayList<>();
+        System.out.println("original capacities");
 
-    passengerBogies.add("Sleeper");
-    passengerBogies.add("AC Chair");
-    passengerBogies.add("First Class");
+        for( int c :capacities){
+            System.out.println(c);
+        }
 
-    System.out.println("\n\nafter adding bogies:");
-    System.out.println(("Passenger Bogies : " + passengerBogies));
+        for(int i = 0;i< capacities.length-1;i++){
+            for(int j = 0;j < capacities.length-1;j++){
+                int temp=0;
+                if(capacities[j] > capacities[j+1]) {
+                    temp = capacities[j];
+                    capacities[j] = capacities[j + 1];
+                    capacities[j + 1] = temp;
+                }
+            }
+        }
 
-    passengerBogies.remove("\nAC Chair");
-    System.out.println("after removing AC Chair:");
-    System.out.println(("Passenger Bogies : " + passengerBogies));
-
-    System.out.println("\nchecking if 'Sleeper' exists:");
-    System.out.println("Contains Sleeper? : " + passengerBogies.contains("Sleeper"));
-
-    System.out.println("\nFinal Train Passesnger Consist:");
-    System.out.println( passengerBogies);
-
+        System.out.println("sorted capacities");
+        for(int c : capacities){
+            System.out.println(c);
+        }
+    }
 }
