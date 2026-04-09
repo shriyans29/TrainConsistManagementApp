@@ -1,26 +1,44 @@
-public static void main(String[] args){
+import java.util.Scanner;
 
-    System.out.println("===================================");
-    System.out.println("UC2 - Add Passenger Bogies to Train");
-    System.out.println("===================================");
+public class TrainConsistManagementApp {
 
-    List<String> passengerBogies = new ArrayList<>();
 
-    passengerBogies.add("Sleeper");
-    passengerBogies.add("AC Chair");
-    passengerBogies.add("First Class");
+    public static boolean linearSearch(String[] bogieIDs, String key) {
+        for (int i = 0; i < bogieIDs.length; i++) {
+            if (bogieIDs[i].equals(key)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-    System.out.println("\n\nafter adding bogies:");
-    System.out.println(("Passenger Bogies : " + passengerBogies));
+    public static void main(String[] args) {
 
-    passengerBogies.remove("\nAC Chair");
-    System.out.println("after removing AC Chair:");
-    System.out.println(("Passenger Bogies : " + passengerBogies));
+        Scanner scanner = new Scanner(System.in);
 
-    System.out.println("\nchecking if 'Sleeper' exists:");
-    System.out.println("Contains Sleeper? : " + passengerBogies.contains("Sleeper"));
+        System.out.print("Enter number of bogies: ");
+        int n = scanner.nextInt();
+        scanner.nextLine();
 
-    System.out.println("\nFinal Train Passesnger Consist:");
-    System.out.println( passengerBogies);
+        String[] bogieIDs = new String[n];
 
+        System.out.println("Enter bogie IDs:");
+        for (int i = 0; i < n; i++) {
+            bogieIDs[i] = scanner.nextLine();
+        }
+
+        System.out.print("Enter bogie ID to search: ");
+        String searchKey = scanner.nextLine();
+
+
+        boolean found = linearSearch(bogieIDs, searchKey);
+
+        if (found) {
+            System.out.println("Bogie ID " + searchKey + " exists in the train consist.");
+        } else {
+            System.out.println("Bogie ID " + searchKey + " not found in the train consist.");
+        }
+
+        scanner.close();
+    }
 }
