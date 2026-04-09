@@ -1,58 +1,31 @@
-// Custom Runtime Exception
-class CargoSafetyException extends RuntimeException {
-    public CargoSafetyException(String message) {
-        super(message);
-    }
-}
-
-// Goods Bogie Class
-class GoodsBogie {
-    String bogieId;
-    String shape;
-    String cargo;
-
-    public GoodsBogie(String bogieId, String shape) {
-        this.bogieId = bogieId;
-        this.shape = shape;
-    }
-
-    // UC15: Safe Cargo Assignment using try-catch-finally
-    public void assignCargo(String cargoType) {
-        try {
-
-            if (shape.equalsIgnoreCase("Rectangular") &&
-                    cargoType.equalsIgnoreCase("Petroleum")) {
-                throw new CargoSafetyException(
-                        "Unsafe: Cannot assign Petroleum to Rectangular Bogie " + bogieId);
-            }
-
-
-            this.cargo = cargoType;
-            System.out.println("Cargo assigned successfully to Bogie " + bogieId);
-
-        } catch (CargoSafetyException e) {
-
-            System.out.println("Error: " + e.getMessage());
-
-        } finally {
-            System.out.println("Cargo assignment attempt completed for Bogie " + bogieId);
-        }
-    }
-}
-
 public class TrainConsistManagementApp {
-
     public static void main(String[] args) {
+        System.out.println("======================================");
+        System.out.println("UC 16 manual sorting using bubble sort");
+        System.out.println("======================================");
 
-        GoodsBogie b1 = new GoodsBogie("GB1", "Cylindrical");
-        b1.assignCargo("Petroleum");
+        int[] capacities = {72,56,24,70,60};
 
+        System.out.println("original capacities");
 
-        GoodsBogie b2 = new GoodsBogie("GB2", "Rectangular");
-        b2.assignCargo("Petroleum");
+        for( int c :capacities){
+            System.out.println(c);
+        }
 
+        for(int i = 0;i< capacities.length-1;i++){
+            for(int j = 0;j < capacities.length-1;j++){
+                int temp=0;
+                if(capacities[j] > capacities[j+1]) {
+                    temp = capacities[j];
+                    capacities[j] = capacities[j + 1];
+                    capacities[j + 1] = temp;
+                }
+            }
+        }
 
-        GoodsBogie b3 = new GoodsBogie("GB3", "Rectangular");
-        b3.assignCargo("Coal");
+        System.out.println("sorted capacities");
+        for(int c : capacities){
+            System.out.println(c);
+        }
     }
 }
