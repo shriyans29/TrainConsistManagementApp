@@ -1,31 +1,28 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class TrainConsistManagementApp {
+
     public static void main(String[] args) {
-        System.out.println("======================================");
-        System.out.println("UC 16 manual sorting using bubble sort");
-        System.out.println("======================================");
 
-        int[] capacities = {72,56,24,70,60};
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("original capacities");
+        System.out.print("Enter number of bogies: ");
+        int n = scanner.nextInt();
+        scanner.nextLine();
 
-        for( int c :capacities){
-            System.out.println(c);
+        String[] bogieNames = new String[n];
+
+        System.out.println("Enter bogie type names:");
+        for (int i = 0; i < n; i++) {
+            bogieNames[i] = scanner.nextLine();
         }
 
-        for(int i = 0;i< capacities.length-1;i++){
-            for(int j = 0;j < capacities.length-1;j++){
-                int temp=0;
-                if(capacities[j] > capacities[j+1]) {
-                    temp = capacities[j];
-                    capacities[j] = capacities[j + 1];
-                    capacities[j + 1] = temp;
-                }
-            }
-        }
+        Arrays.sort(bogieNames);
 
-        System.out.println("sorted capacities");
-        for(int c : capacities){
-            System.out.println(c);
-        }
+
+        System.out.println("Sorted Bogie Names: " + Arrays.toString(bogieNames));
+
+        scanner.close();
     }
 }
